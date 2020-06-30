@@ -1,17 +1,16 @@
 package com.example.myapplication;
 
 public class UserHelperClass {
-    String name, email, phone, username, password;
+    String name, email, phone, password;
 
 
     public UserHelperClass() {
     }
 
-    public UserHelperClass(String name, String email, String phone, String username, String password) {
+    public UserHelperClass(String name, String email, String phone,  String password) {
         this.name = name;
         this.email = email;
         this.phone = phone;
-        this.username = username;
         this.password = password;
     }
 
@@ -25,10 +24,6 @@ public class UserHelperClass {
 
     public String getPhone() {
         return phone;
-    }
-
-    public String getUsername() {
-        return username;
     }
 
     public String getPassword() {
