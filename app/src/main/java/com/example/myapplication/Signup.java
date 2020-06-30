@@ -25,7 +25,7 @@ import java.lang.reflect.Member;
 public class Signup extends AppCompatActivity {
 
     Button btSignUp;
-    EditText etName, etEmail, etPhone, etPassword1, etUsername;
+    EditText etName, etEmail, etPhone, etPassword1;
     FirebaseAuth fAuth;
 
     DatabaseReference dataUser;
@@ -42,7 +42,6 @@ public class Signup extends AppCompatActivity {
         etEmail = findViewById(R.id.et_email);
         etPhone = findViewById(R.id.et_phone);
         etPassword1 = findViewById(R.id.et_password1);
-        etUsername = findViewById(R.id.et_username);
 
         fAuth = FirebaseAuth.getInstance();
 
@@ -68,7 +67,6 @@ public class Signup extends AppCompatActivity {
         String phone = etPhone.getText().toString();
         String email = etEmail.getText().toString().trim();
         String password = etPassword1.getText().toString().trim();
-        String username = etUsername.getText().toString().trim();
 
 
         if (name.isEmpty()){
@@ -95,23 +93,6 @@ public class Signup extends AppCompatActivity {
             return;
         }
 
-        if (username.isEmpty()) {
-            etUsername.setError("Username is required!");
-            etPassword1.requestFocus();
-            return;
-        }
-
-        if (username.length()<6) {
-            etUsername.setError("Min length: 6 characters");
-            etPassword1.requestFocus();
-            return;
-        }
-
-        if (username.length()>16) {
-            etUsername.setError("Max length: 16 characters");
-            etPassword1.requestFocus();
-            return;
-        }
 
         if (password.isEmpty()){
             etPassword1.setError("Password id required!");
@@ -129,7 +110,7 @@ public class Signup extends AppCompatActivity {
         if (!TextUtils.isEmpty(name)) {
 
             String id =  dataUser.push().getKey();
-            UserHelperClass user = new UserHelperClass(name, email, phone, username, password);
+            UserHelperClass user = new UserHelperClass(name, email, phone, password);
             dataUser.child(id).setValue(user);
 
             Toast.makeText(this, "User Added", Toast.LENGTH_SHORT).show();
@@ -142,4 +123,3 @@ public class Signup extends AppCompatActivity {
         }
     }
 
-}
